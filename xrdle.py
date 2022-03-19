@@ -102,7 +102,7 @@ def print_state(state, n_guesses, n_letters):
     print("")
 
 
-def all_words(length=5):
+def all_words(n_letters):
     """ muodostaa sanalistan """
 
     # lataa kirja
@@ -119,7 +119,7 @@ def all_words(length=5):
     words = filter(bool, words)
 
     # poista vääränmittaiset sanat
-    words = filter(lambda x: (len(x) == length), words)
+    words = filter(lambda x: (len(x) == n_letters), words)
 
     # pienennä kirjaimet
     words = map(str.lower, words)
@@ -182,7 +182,7 @@ def main():
     guess_fun = human_guess
     # guess_fun = snowflakes_and_moonshine
 
-    words = all_words()
+    words = all_words(n_letters)
     correct = random.choice(words)
     # correct = 'kissa'
 
