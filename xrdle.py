@@ -60,10 +60,35 @@ def snowflakes_and_moonshine(words, state):
     eli siinä on mukana kaikki edelliset arvaukset ja niiden arviot.
 
     """
+    n_letters = len(words[0])
 
-    # taikaa..
+    # jos alussa, arvo sana
+    if not state:
+        return random.choice(words)
 
-    return "kissa"
+    # nämä fiksatan, loput arvotaan
+    fixed = ['']*n_letters
+
+    # Fiksataan kaikki täsmälleen oikeat kirjaimet aiemmista vastauksista
+    for earlier, evaluation in state:
+        for eval_idx, eval_val in enumerate(evaluation):
+            if eval_val == '*':
+                fixed[eval_idx] = earlier[eval_idx] 
+
+    # apufunktio hoitaa suodattamisen niin että vain ne sanat poimitaan
+    # joissa on valitut fiksatut kirjaimet
+    def filter_words(word):
+        for idx in range(len(word)):
+            if fixed[idx] and word[idx] != fixed[idx]:
+                return False
+
+        return True
+            
+    # suodatetaan
+    valid_words = list(filter(filter_words, words))
+
+    # arvotaan jäljelle jääneistä sanoista
+    return random.choice(valid_words)
 
 
 def human_guess(words, state):
@@ -173,14 +198,14 @@ def main():
     """
     """
     # alkuasetukset
-    n_games = 1
+    n_games = 500
     n_letters = 5
     n_guesses = 6
     
     # ihminen vai kone
 
-    guess_fun = human_guess
-    # guess_fun = snowflakes_and_moonshine
+    # guess_fun = human_guess
+    guess_fun = snowflakes_and_moonshine
 
     words = all_words(n_letters)
     correct = random.choice(words)
