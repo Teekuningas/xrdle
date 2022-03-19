@@ -193,17 +193,17 @@ def main():
         result = game(n_guesses, n_letters, guess_fun, words, correct)
         results.append(result)
 
+    n_tries_success = 0
     n_success = 0
-    n_tries = 0
 
     # ja lasketaan vähän tilastoja..
     for result in results:
         if all(map(lambda x: x == '*', result[-1][1])):
-            n_tries += len(result)
+            n_tries_success += len(result)
             n_success += 1
 
     print("Kaikista {0} pelistä {1} meni läpi!".format(n_games, n_success))
-    print("Keskiarvo yritysten lukumäärälle: {0}".format(float(n_tries)/n_games))
+    print("Keskiarvo yritysten lukumäärälle läpimenneissä peleissä: {0:.1f}".format(float(n_tries_success)/n_success))
 
 
 if __name__ == '__main__':
