@@ -1,5 +1,4 @@
-Käyntiin tarvitsee python3 ja requests-kirjaston. Esim näin alkuun kun on python:
-- Lataa koneelle ja menee terminaalissa kansioon.
-- Asentaa requestsin: python3 -m pip install requests
-- Käynnistää: python3 xrdle.py
-- 
+Tarvitsee käynnistyäkseen python3 ja sille requests-kirjaston. Esim näin pääsee alkuun kun on python konneella:
+- Lataa tän repon koneelle ja mennee sinne terminaalissa.
+- Asentaa requestsin jos ei sitä vielä ole: python3 -m pip install requests
+- Ja sitten lähtee: python3 xrdle.py

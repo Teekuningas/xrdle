@@ -184,7 +184,7 @@ def main():
 
     words = all_words()
     correct = random.choice(words)
-    correct = 'kissa'
+    # correct = 'kissa'
 
     results = []
 
